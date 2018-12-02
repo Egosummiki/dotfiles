@@ -4,6 +4,7 @@
 !i3/
 !waybar/
 !ranger/
+!zshrc
 nvim/bundle
 ranger/plugins
 **__pycache__**
