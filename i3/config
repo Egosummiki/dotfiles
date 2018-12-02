@@ -1,0 +1,126 @@
+set $mod Mod4
+set $term st
+
+font pango:Ubuntu 8
+
+bindsym $mod+Return exec $term
+bindsym $mod+BackSpace kill
+bindsym $mod+q exec light-locker-command -l
+
+bindsym $mod+d exec rofi -show run -theme glue_pro_blue
+bindsym $mod+Shift+d workspace next; exec rofi -show run
+bindsym $mod+g exec firefox-nightly
+bindsym $mod+r exec $term -e 'ranger'
+
+gaps inner 10
+gaps outer 0
+
+bindsym $mod+Ctrl+j gaps inner all minus 5
+bindsym $mod+Ctrl+k gaps inner all plus 5
+bindsym $mod+Ctrl+h gaps inner current minus 5
+bindsym $mod+Ctrl+l gaps inner current plus 5
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+a focus parent
+
+bindsym $mod+1 workspace "1:web"
+bindsym $mod+2 workspace "2:code"
+bindsym $mod+3 workspace "3:term"
+bindsym $mod+4 workspace "4:work"
+bindsym $mod+5 workspace "5:music"
+bindsym $mod+6 workspace "6:docs"
+bindsym $mod+7 workspace "7:7"
+bindsym $mod+8 workspace "8:8"
+bindsym $mod+9 workspace "9:9"
+bindsym $mod+0 workspace "10:10"    
+
+bindsym $mod+Shift+1 move container to workspace "1:web"
+bindsym $mod+Shift+2 move container to workspace "2:code"
+bindsym $mod+Shift+3 move container to workspace "3:term"
+bindsym $mod+Shift+4 move container to workspace "4:work"
+bindsym $mod+Shift+5 move container to workspace "5:music"
+bindsym $mod+Shift+6 move container to workspace "6:docs"
+bindsym $mod+Shift+7 move container to workspace "7:7"
+bindsym $mod+Shift+8 move container to workspace "8:8"
+bindsym $mod+Shift+9 move container to workspace "9:9"
+bindsym $mod+Shift+0 move container to workspace "10:10"    
+
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+Right workspace next
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+bindsym $mod+Shift+BackSpace exit
+
+bindsym $mod+u resize shrink width 5 px
+bindsym $mod+i resize grow height 5 px
+bindsym $mod+o resize shrink height 5 px
+bindsym $mod+p resize grow width 5 px
+
+bindsym $mod+F3 exec pactl set-sink-volume 0 +3%
+bindsym $mod+F2 exec pactl set-sink-volume 0 -3%
+
+bindsym Print exec "grim '/home/ego/pics/screen/%s_%H%M_%d.%m.%Y_$wx$h.png'"
+
+bindsym $mod+x exec "setxkbmap -model dell -layout pt"
+bindsym $mod+z exec "setxkbmap -model dell -layout pl"
+
+bindsym $mod+slash [title="r_math_quick"] scratchpad show; [title="r_math_quick"] move position center
+bindsym $mod+grave [title="dropdown"] scratchpad show; [title="dropdown"] move position center
+bindsym $mod+period move scratchpad
+bindsym $mod+t scratchpad show
+
+for_window [title="r_math_quick"] floating enable
+for_window [title="r_math_quick"] resize set 600 400
+for_window [title="r_math_quick"] move scratchpad
+for_window [title="r_math_quick"] border pixel 5
+exec --no-startup-id $term -t "r_math_quick" -e "R -q"
+
+for_window [title="dropdown"] floating enable
+for_window [title="dropdown"] resize set 600 400
+for_window [title="dropdown"] move scratchpad
+for_window [title="dropdown"] border pixel 5
+exec --no-startup-id $term -t "dropdown"
+
+exec light-locker
+exec waybar
+for_window [class="^.*"] border pixel 1
+exec --no-startup-id feh --bg-fill /home/ego/pics/wall/city.jpeg
+output "*" background /home/ego/pics/wall/deer.png fill
+exec "xgamma -gamma 0.8"

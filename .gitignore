@@ -1,0 +1,10 @@
+/*
+!.gitignore
+!nvim/
+!i3/
+!waybar/
+!ranger/
+nvim/bundle
+ranger/plugins
+**__pycache__**
+nvim/.netrwhist
