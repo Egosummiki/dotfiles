@@ -6,6 +6,8 @@
 !waybar/
 !ranger/
 !zshrc
+!bspwm/
+!alacritty
 nvim/bundle
 ranger/plugins
 **__pycache__**

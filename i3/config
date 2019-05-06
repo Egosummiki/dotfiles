@@ -1,18 +1,29 @@
 set $mod Mod4
-set $term st
+set $term alacritty
+set $browser firefox
 
-font pango:Ubuntu 8
+font pango:ubuntu 12
+
+for_window [class='term-float'] floating enable
 
 bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec $term --class 'term-float' 
 bindsym $mod+BackSpace kill
-bindsym $mod+q exec light-locker-command -l
+bindsym $mod+q exec vlock -a
+bindsym $mod+Shift+q exit
 
-bindsym $mod+d exec rofi -show run -theme glue_pro_blue
-bindsym $mod+Shift+d workspace next; exec rofi -show run
-bindsym $mod+g exec firefox-nightly
-bindsym $mod+r exec $term -e 'ranger'
+bindsym $mod+d exec ~/scripts/run-rofi.sh
 
-gaps inner 10
+bindsym $mod+c exec ~/scripts/edit-config.sh $(~/scripts/list-configs.sh | rofi -dmenu -theme lb -font "Ubuntu 12")
+bindsym $mod+g workspace "1:web"; exec ~/scripts/goto-web.sh $(~/scripts/list-web.sh | rofi -dmenu -theme lb -font "Ubuntu 12")
+bindsym $mod+s workspace "1:web"; exec $browser --new-tab "https://duckduckgo.com/$(rofi -dmenu -theme lb -font \"Ubuntu 12\")"
+bindsym $mod+r exec ~/scripts/goto-loc.sh $(~/scripts/list-locs.sh | rofi -dmenu -theme lb -font "Ubuntu 12")
+bindsym $mod+x exec ~/scripts/set-wall.sh $(~/scripts/list-wall.sh | rofi -dmenu -theme lb -font "Ubuntu 12")
+bindsym $mod+F4 exec ./scripts/set-screen.sh $(./scripts/list-screens.sh | rofi -dmenu -theme lb -font "Ubuntu 12")
+bindsym $mod+F5 exec ./scripts/mount-menu.sh
+
+floating_modifier $mod
+gaps inner 5
 gaps outer 0
 
 bindsym $mod+Ctrl+j gaps inner all minus 5
@@ -98,8 +109,8 @@ bindsym $mod+F2 exec pactl set-sink-volume 0 -3%
 
 bindsym Print exec "grim '/home/ego/pics/screen/%s_%H%M_%d.%m.%Y_$wx$h.png'"
 
-bindsym $mod+x exec "setxkbmap -model dell -layout pt"
-bindsym $mod+z exec "setxkbmap -model dell -layout pl"
+# bindsym $mod+x exec "setxkbmap -model dell -layout pt"
+# bindsym $mod+z exec "setxkbmap -model dell -layout pl"
 
 bindsym $mod+slash [title="r_math_quick"] scratchpad show; [title="r_math_quick"] move position center
 bindsym $mod+grave [title="dropdown"] scratchpad show; [title="dropdown"] move position center
@@ -118,9 +129,7 @@ for_window [title="dropdown"] move scratchpad
 for_window [title="dropdown"] border pixel 5
 exec --no-startup-id $term -t "dropdown"
 
-exec light-locker
-exec waybar
+exec polybar egobar
 for_window [class="^.*"] border pixel 1
-exec --no-startup-id feh --bg-fill /home/ego/pics/wall/city.jpeg
-output "*" background /home/ego/pics/wall/deer.png fill
-exec "xgamma -gamma 0.8"
+default_border pixel 1px
+exec --no-startup-id feh --bg-fill /home/ego/pics/wall/trafic.jpg

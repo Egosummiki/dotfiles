@@ -34,6 +34,8 @@ map gd :bd<return>
 map gf :find<space>
 map <C-k> :bn<return>
 map <C-j> :bp<return>
+map <C-h> <C-w><C-h>
+map <C-l> <C-w><C-l>
 
 " Quick C style comment
 noremap <C-_> :call Comment()<return>
@@ -94,4 +96,5 @@ nmap gw :YcmCompleter GoToDeclaration<return>
 map gi :call AppendInclude()<return>
 map ge :call GenerateDefinition()<return>
 
-nnoremap <A-t> :call TermToggle(12)<CR>
+nnoremap <M-t> :call TermToggle(12)<CR>
+tnoremap <M-t> <C-\><C-n>:call TermToggle(12)<CR>

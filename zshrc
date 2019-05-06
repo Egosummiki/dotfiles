@@ -62,6 +62,7 @@ plugins=(
   git
   sudo
   archlinux
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -83,6 +84,21 @@ function hdmi() {
 
 }
 
+function whdmi() {
+    
+    xrandr | grep "HDMI1 disconnected" >/dev/null
+
+    if [ $? -eq 0 ]
+    then
+        echo "HDMI is not connected!"
+    else
+        xrandr --output HDMI1 --mode 2560x1080
+        sleep 1
+        xrandr --output eDP1 --off
+    fi
+
+}
+
 function edp() {
     
     xrandr --output HDMI1 --off
@@ -95,6 +111,19 @@ function vp() {
     
     cd /home/ego/work/eoimagine
     nvim .
+}
+
+function win7() {
+    
+    startx /home/ego/vms/runwin7.sh :4
+}
+
+function conj() {
+    w3m "conjuga-me.net/verbo-$1"
+}
+
+function sconj() {
+    w3m "http://www.spanishdict.com/conjugate/$1"
 }
 
 bindkey -s ',.' 'ranger\n'
@@ -155,6 +184,7 @@ alias egowifi='sudo netctl start egowifi'
 alias poff='sudo systemctl poweroff'
 alias rboot='sudo systemctl reboot'
 alias qt='XDG_CURRENT_DESKTOP=kde'
+alias w32='WINEPREFIX=~/.wine32 wine'
 
 alias gi='cd /home/ego/work/eoimagine'
 alias gir='cd /home/ego/work/eoimagine/run'
@@ -169,3 +199,20 @@ alias gc='git checkout'
 alias gb='git branch'
 alias gcm='git commit -m'
 alias gpm='git push origin master'
+
+alias isnet="ping -c1 8.8.8.8 | awk '/transmitted/ {print \$1}'"
+alias swaylap="sway -c /home/ego/.config/sway/configlap"
+alias swayhd="sway -c /home/ego/.config/sway/confighd"
+alias candr="adb shell screenrecord --output-format h264 - | ffplay -"
+
+alias rsnet='sudo ip link set wlp6s0 down && sleep 1 && sudo ip link set wlp6s0 up'
+alias lgrep='ls -1 --color=always | grep'
+
+export CLASSPATH=".:/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH"
+alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
+alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.7.1-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
+
+mwl() {
+
+    mv $1 $HOME/pics/wall
+}

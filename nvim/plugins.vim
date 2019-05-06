@@ -7,7 +7,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'Valloric/YouCompleteMe'
+" NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'fatih/vim-go' 
@@ -25,7 +25,10 @@ NeoBundle 'xuhdev/vim-latex-live-preview'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'sakhnik/nvim-gdb'
 NeoBundle 'octol/vim-cpp-enhanced-highlight'
-NeoBundle 'drewtempelmeyer/palenight.vim'
+" NeoBundle 'joshdick/onedark.vim'
+NeoBundle 'kristijanhusak/vim-hybrid-material'
+NeoBundle 'mboughaba/i3config.vim'
+NeoBundle 'godlygeek/tabular'
 
 call neobundle#end()
 filetype plugin indent on
