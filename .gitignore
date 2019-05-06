@@ -7,7 +7,8 @@
 !ranger/
 !zshrc
 !bspwm/
-!alacritty
+!alacritty/
+!sxhkd/
 nvim/bundle
 ranger/plugins
 **__pycache__**
